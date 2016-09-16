@@ -1,0 +1,60 @@
+#modal-title{
+	margin-left:  170px;
+	color: #34495e;
+}
+
+#modal-title2{
+	margin-left:  210px;
+	color: #34495e;
+}
+
+#lembrete{
+	color: #34495e;
+}
+
+#login{
+	width: 280px;
+	display: block;
+}
+
+#cadastrar{
+	width: 280px;
+	display: inline-block;
+	margin-top: 10px;
+}
+
+.container{
+	border-radius: 4px;
+	box-shadow: 2px 2px 15px #7f8c8d;
+	margin: 100px auto;
+	width: 320px;
+	height: 150px;
+	-webkit-border-radius: 4px; /*webkit para rodar em todos navegadores*/
+	-moz-border-radius: 4px; /*moz rodar no mozila*/
+	border-radius: 10px;
+	display: block;
+	background-color: #fff;
+}
+
+body{
+	background-color: #ecf0f1;
+}
+
+label#titulo{
+	color: #2c3e50;
+	font-size: 60px;
+	right: 50%;
+	margin-right: 60px;
+	margin-top: 30px;
+	margin-left: 400px;
+	font-family: "Times New Roman", Times, serif;
+}
+
+#gif{
+	margin-left: 560px;
+}
+
+#entrar{
+	text-decoration:none;
+	color: #ecf0f1;
+}

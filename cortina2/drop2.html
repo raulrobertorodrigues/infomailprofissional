@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Loja de Cortinas</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/business-casual.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]-->
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <!--[endif]-->
+
+<style>
+.droptarget {
+    float: left; 
+    width: 300px; 
+    height: 200px;
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+}
+</style>
+
+</head>
+
+<body>
+
+    <div class="brand">Loja Casual cortinas</div>
+    <div class="address-bar">São Paulo | Av. Paulista, 1210 | (11) 3938-8090</div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+                <a class="navbar-brand" href="index.html">Business Casual</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="index.html">Página inicial</a>
+                    </li>
+                    <li>
+                        <a href="about.html">Quem somos</a>
+                    </li>
+                    <li>
+                        <a href="blog.html">Fotos</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Orçamento</a>
+                    </li>
+                    <li>
+                        <a href="drop.html">Teste a cortina</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+<fieldset style="width:30%; float:left; margin-left: 1%;">
+    <p style="color: #fff; font-weight: bold; ">Arraste a imagem dentro do retângulo:</p>
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)" style="z-index:1">
+        <img src="img/cortinadespojada.jpg"  draggable="true" ondragstart="drag(event)" id="drag1" width="300" height="200">
+    </div>
+    <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)" style="z-index:2">
+        <img src="img/cortinacasual.jpg" draggable="true" ondragstart="drag(event)" id="drag2" width="300" height="200">
+    </div>
+</fieldset>
+<form method="post" action="drop2.php" enctype="multipart/form-data" >
+    <p style="color: #fff; font-weight: bold;"">Coloque aqui a sua imagem</p>
+    <div class="droptarget" style="background-image: url(img/bg1.jpg); z-index: 0;" id="#fundo" width-max="300" height-max="200"></div>
+    <input type="file" name="imagem" required/><br/>
+    <input type="submit" value="Enviar"/><a href="#fundo"><img src=""></a>
+</form><br>
+    <button ><a style="text-decoration: none;" href="drop2.html" class="btn btn-primary btn-block">Atualizar</a></button>
+<p style="clear:both; color: #fff"><strong>Note:</strong> 
+Eventos de arrastar não são suportados no Internet Explorer 8 e versões anteriores ou Safari 5.1 e versões anteriores.</p>
+<p id="demo"></p>
+
+<script>
+/* Eventos disparados sobre o destino de arrastar */
+
+document.addEventListener("dragstart", function(event) {
+    // O método dataTransfer.setData () define o tipo de dados eo valor dos dados arrastado
+    event.dataTransfer.setData("Text", event.target.id);
+    
+    // Saída de texto quando começar a arrastar o elemento 
+    document.getElementById("demo").innerHTML = "Arraste-me.";
+    
+    // Alterar a opacidade do elemento arrastável
+    event.target.style.opacity = "0.4";
+});
+
+// Ao arrastar o elemento, mudar a cor do texto de saída
+document.addEventListener("drag", function(event) {
+    document.getElementById("demo").style.color = "red";
+});
+
+// Saída de texto quando terminar arrastando o elemento e redefinir a opacidade
+document.addEventListener("dragend", function(event) {
+    document.getElementById("demo").innerHTML = "Fim do teste.";
+    event.target.style.opacity = "1";
+});
+
+
+/* Eventos disparados sobre o destino de soltar */
+
+// Quando o elemento  draggable entra no dropTarget , mudar o estilo de borda do DIVS
+document.addEventListener("dragenter", function(event) {
+    if ( event.target.className == "droptarget" ) {
+        event.target.style.border = "3px dotted red";
+    }
+});
+
+// Por padrão , os dados / elementos não pode ser descartado em outros elementos. Para permitir uma queda , devemos evitar a manipulação padrão do elemento
+document.addEventListener("dragover", function(event) {
+    event.preventDefault();
+});
+
+// Quando o elemento draggable deixa o dropTarget , redefinir o estilo da borda do DIVS
+document.addEventListener("dragleave", function(event) {
+    if ( event.target.className == "droptarget" ) {
+        event.target.style.border = "red";
+    }
+});
+
+/* 
+Em drop - Impedir o tratamento padrão do navegador dos dados (o padrão é aberto como link em gota)
+   Repor a cor do texto de saída ea cor da beira do DIV
+   Obter os dados arrastados com as dataTransfer.getData ( ) Método
+   Os dados arrastado é o id do elemento arrastado ( " drag1 " )
+   Acrescente o elemento arrastado para o elemento de gota
+*/
+document.addEventListener("drop", function(event) {
+    event.preventDefault();
+    if ( event.target.className == "droptarget" ) {
+        document.getElementById("demo").style.color = "red";
+        event.target.style.border = "";
+        var data = event.dataTransfer.getData("Text");
+        event.target.appendChild(document.getElementById(data));
+    }
+});
+</script>
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center">SOBRE NÓS
+                        <strong>PARA VOCÊ!</strong>
+                    </h2>
+                    <hr>
+                    <p>Em nossa loja você encontra tudo sobre cortinas. A casual cortinas trabalha com os melhores tecidos e marcas, temos uma equipe totalmente qualificada e pronta para lhe dar o atendimento exclusivo que você nosso cliente precisa..</p>
+                    <p>Aqui em nosso site você pode fazer o teste de como ficará o modelo escolhido em sua parede, também pode solicitar um orçamento via email ou por telefone e se preferir agendamos uma visita.</p>
+                    <p>Estamos no mercado desde 1999 com excelência e mérito no que melhor sabemos fazer, que é entender você nosso cliente para satisfazer a sua necessidade de compra e deixá-lo feliz e satisfeito.</p>
+                    <p>Trabalhamos bem para servir sempre.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    <!-- /.container -->
+    <footer> 
+        <div class="container">
+            <button style="margin-top: 50px;" ><a id="bdrop" style="text-decoration:none;" href="http://www.infomailprofissional.com.br" class="btn btn-primary btn-block"><B>Voltar ao inicio</B></a>
+            </button>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p>infomailprofissional&copy;</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Script to Activate the Carousel -->
+    <script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+    </script>
+
+</body>
+
+</html>
